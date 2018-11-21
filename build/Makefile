@@ -1,4 +1,4 @@
-PJDIR=/Users/dwianto/Desktop/bssn_sip/src/pjproject
+PJDIR=/home/bssn/pjproject
 include $(PJDIR)/build.mak
 include $(PJDIR)/build/common.mak
 
