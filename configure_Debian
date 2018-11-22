@@ -1,0 +1,1 @@
+./configure --enable-shared  CFLAGS="-O3 -DNDEBUG -msoft-float -fno-builtin -msha -msse4.1 -mssse3"
