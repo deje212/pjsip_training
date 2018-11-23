@@ -17,7 +17,6 @@ static void handler_incoming_call(pjsua_acc_id acc_id, pjsua_call_id call_id, pj
   PJ_UNUSED_ARG(rdata);
 
   pjsua_call_get_info(call_id, &ci);
-
   PJ_LOG(3,(THIS_FILE, "Incoming call from %.*s!!",
      (int)ci.remote_info.slen,
      ci.remote_info.ptr));
@@ -50,8 +49,8 @@ static void on_call_media_state(pjsua_call_id call_id)
 
     if (ci.media_status == PJSUA_CALL_MEDIA_ACTIVE) {
 	// When media is active, connect call to sound device.
-	pjsua_conf_connect(ci.conf_slot, 0);
-	pjsua_conf_connect(0, ci.conf_slot);
+	  pjsua_conf_connect(ci.conf_slot, 0);
+	  pjsua_conf_connect(0, ci.conf_slot);
     }
 }
 
@@ -82,12 +81,8 @@ int main(int argc, char *argv[])
   	cfg.cb.on_call_media_state = &on_call_media_state;
   	cfg.cb.on_call_state = &on_call_state;
 
-
+    /* PJSUA LOGGING Initialization*/
   	pjsua_logging_config_default(&log_cfg);
-
-    /*
-    pjsua_logging_config_default-->pjsua_logging_config-->
-    */
   	log_cfg.console_level = 4;
 
     /* PJSUA Initialization */
@@ -118,9 +113,10 @@ int main(int argc, char *argv[])
           return status;
     }
 
+    /* Account Configuration */
     pjsua_acc_config cfg;
-
     pjsua_acc_config_default(&cfg);
+
     cfg.id = pj_str("sip:" SIP_USER "@" SIP_DOMAIN);
     cfg.reg_uri = pj_str("sip:" SIP_DOMAIN);
     cfg.cred_count = 1;
@@ -130,6 +126,7 @@ int main(int argc, char *argv[])
     cfg.cred_info[0].data_type = PJSIP_CRED_DATA_PLAIN_PASSWD;
     cfg.cred_info[0].data = pj_str(SIP_PASSWD);
 
+    /* Account Initialization */
     status = pjsua_acc_add(&cfg, PJ_TRUE, &acc_id);
 
     if (status != PJ_SUCCESS) {
