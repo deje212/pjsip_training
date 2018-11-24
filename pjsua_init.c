@@ -1,10 +1,10 @@
 #include <pjsua-lib/pjsua.h>
 
 
-#define THIS_FILE "pjsua_init.c"
-#define SIP_DOMAIN	"sip.bssn.go.id"
-#define SIP_USER	"test"
-#define SIP_PASSWD	"test"
+#define THIS_FILE "pjsua_tls.c"
+#define SIP_DOMAIN	"3622"
+#define SIP_USER	"104"
+#define SIP_PASSWD	"ii"
 
 
 /* Callback called by the library upon receiving incoming call */
